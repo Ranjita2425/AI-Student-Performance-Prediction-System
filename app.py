@@ -107,7 +107,10 @@ if not st.session_state.logged:
         u=st.text_input("Teacher username"); p=st.text_input("Password",type="password")
         st.info("Demo credentials: teacher / teacher123")
         if st.button("Sign in"):
-            if (u,p)==("teacher","teacher123"): st.session_state.logged=True; st.session_state.role=role; st.rerun()
+            if u.strip().lower() == "teacher" and p.strip() == "teacher123":
+                st.session_state.logged = True
+                st.session_state.role = "Teacher"
+                st.rerun()
             else: st.error("Invalid demo credentials.")
     st.caption("Synthetic demo data is used. Do not treat it as real student records.")
     st.stop()
